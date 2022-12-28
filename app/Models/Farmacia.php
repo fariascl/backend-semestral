@@ -18,7 +18,7 @@ class Farmacia extends Model
         "farm_mail"
     ];
 
-    public function egreso() 
+    public function egreso()
     {
         return $this->hasMany(Egreso::class);
     }
