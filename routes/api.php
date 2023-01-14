@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FarmaciaController;
 use App\Http\Controllers\Centro_DistribucionController;
 use App\Http\Controllers\MedicamentoController;
+use App\Http\Controllers\IngresoController;
+use App\Http\Controllers\EgresoController;
+use App\Http\Controllers\TraspasoController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,4 +46,29 @@ Route::prefix('/medicamentos')->group(function () use ($router) {
     $router->delete('/eliminar', [MedicamentoController::class, 'eliminarMedicamento']);
     $router->get('/all', [MedicamentoController::class, 'listarMedicamentos']);
     $router->get('/ver/{id}', [MedicamentoController::class, 'filtrarMedicamentos']);
+});
+
+Route::prefix('/traspaso')->group(function () use ($router) {
+    $router->post('/agregar', [TraspasoController::class, 'guardarTraspaso']);
+    $router->put('/actualizar', [TraspasoController::class, 'actualizarTraspaso']);
+    $router->delete('/eliminar', [TraspasoController::class, 'eliminarTraspaso']);
+    $router->get('/all', [TraspasoController::class, 'listarTraspasos']);
+    $router->get('/ver/{id}', [TraspasoController::class, 'filtrarTraspasos']);
+});
+
+
+Route::prefix('/ingreso')->group(function () use ($router) {
+    $router->post('/agregar', [IngresoController::class, 'guardarIngreso']);
+    $router->put('/actualizar', [IngresoController::class, 'actualizarIngreso']);
+    $router->delete('/eliminar', [IngresoController::class, 'eliminarIngreso']);
+    $router->get('/all', [IngresoController::class, 'listarIngresos']);
+    $router->get('/ver/{id}', [IngresoController::class, 'filtrarIngresos']);
+});
+
+Route::prefix('/egreso')->group(function () use ($router) {
+    $router->post('/agregar', [EgresoController::class, 'guardarEgreso']);
+    $router->put('/actualizar', [EgresoController::class, 'actualizarEgreso']);
+    $router->delete('/eliminar', [EgresoController::class, 'eliminarEgreso']);
+    $router->get('/all', [EgresoController::class, 'listarEgresos']);
+    $router->get('/ver/{id}', [EgresoController::class, 'filtrarEgresos']);
 });

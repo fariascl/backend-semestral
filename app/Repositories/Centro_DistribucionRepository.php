@@ -37,7 +37,7 @@ class Centro_DistribucionRepository
         try {
             $cd = Centro_Distribucion::findorFail($request->id);
             if (isset($request->codigo) &&  $cd->cd_codigo = $request->codigo)
-            $farmacias = Centro_Distribucion::where('id', $request->id)
+            $cd = Centro_Distribucion::where('id', $request->id)
             ->update([
                 'cd_codigo' => $request->codigo
             ]);
@@ -53,7 +53,7 @@ class Centro_DistribucionRepository
             ->update([
                 'cd_telefono' => $request->telefono
             ]);
-            return response()->json(["cenro_distribucion" => $cd], Response::HTTP_OK);
+            return response()->json(["centro_distribucion" => $cd], Response::HTTP_OK);
         } catch (Exception $e)
             {
                 Log::info([
