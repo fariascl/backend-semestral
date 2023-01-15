@@ -4,10 +4,10 @@ namespace App\Repositories;
 use App\Models\Centro_Distribucion;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
-use App\Http\Requests\CentroDistribucionRequest;
-use App\Repositories\Centro_DistribucionRepository;
+use App\Repositories\Exception;
+use App\Repositories\HTTP_BAD_REQUEST;
 
-class Centro_DistribucionRepository
+class CentroDistribucionRepository
 {
     public function listarCentrosDistribucion()
     {

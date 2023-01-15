@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
+use Illuminate\Contracts\Validation\Validator;
 
 class FarmaciaRequest extends FormRequest
 {
@@ -13,7 +16,7 @@ class FarmaciaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +27,27 @@ class FarmaciaRequest extends FormRequest
     public function rules()
     {
         return [
+            "nombre" => "required|string",
+            "direccion" => "required",
+            "mail" => "required|email:rfc,dns"
             //
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => 'El campo :attribute es requerido',
+            'string' => 'El campo :attribute debe ser de tipo string',
+            'email' => 'El formato del email es incorrecto'
+        ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json($validator->errors()->all(), Response::HTTP_BAD_REQUEST)
+        );
+    }
+
 }

@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FarmaciaController;
-use App\Http\Controllers\Centro_DistribucionController;
+use App\Http\Controllers\CentroDistribucionController;
 use App\Http\Controllers\MedicamentoController;
 use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\EgresoController;
@@ -33,11 +33,11 @@ Route::prefix('/farmacias')->group(function () use ($router) {
 });
 
 Route::prefix('/centros_distribucion')->group(function () use ($router) {
-    $router->post('/agregar', [Centro_DistribucionController::class, 'guardarCentroDistribucion']);
-    $router->put('/actualizar', [Centro_DistribucionController::class, 'actualizarCentroDistribucion']);
-    $router->delete('/eliminar', [Centro_DistribucionController::class, 'eliminarCentroDistribucion']);
-    $router->get('/all', [Centro_DistribucionController::class, 'listarCentrosDistribucion']);
-    $router->get('/ver/{id}', [Centro_DistribucionController::class, 'filtrarCentroDistribucion']);
+    $router->post('/agregar', [CentroDistribucionController::class, 'guardarCentroDistribucion']);
+    $router->put('/actualizar', [CentroDistribucionController::class, 'actualizarCentroDistribucion']);
+    $router->delete('/eliminar', [CentroDistribucionController::class, 'eliminarCentroDistribucion']);
+    $router->get('/all', [CentroDistribucionController::class, 'listarCentrosDistribucion']);
+    $router->get('/ver/{id}', [CentroDistribucionController::class, 'filtrarCentroDistribucion']);
 });
 
 Route::prefix('/medicamentos')->group(function () use ($router) {
