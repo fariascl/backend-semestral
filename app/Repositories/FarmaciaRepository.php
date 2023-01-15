@@ -35,19 +35,19 @@ class FarmaciaRepository
     {
         try {
             $farmacias = Farmacia::findorFail($request->id);
-            if (isset($request->nombre) &&  $farmacias->farm_nombre = $request->nombre)
+            if (isset($request->nombre) &&  $farmacias->nombre)
             $farmacias = Farmacia::where('id', $request->id)
             ->update([
                 'farm_nombre' => $request->nombre
             ]);
 
-            if (isset($request->direccion) &&  $farmacias->farm_direccion = $request->direccion)
+            if (isset($request->direccion) &&  $farmacias->direccion)
             $farmacias = Farmacia::where('id', $request->id)
             ->update([
                 'farm_direccion' => $request->direccion
             ]);
 
-            if (isset($request->mail) && $farmacias->farm_mail = $request->mail)
+            if (isset($request->mail) && $farmacias->mail)
             $farmacias = Farmacia::where('id', $request->id)
             ->update([
                 'farm_mail' => $request->mail
