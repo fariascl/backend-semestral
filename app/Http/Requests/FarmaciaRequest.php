@@ -28,7 +28,7 @@ class FarmaciaRequest extends FormRequest
     {
         return [
             "nombre" => "required|string",
-            "direccion" => "required",
+            "direccion" => "required|string",
             "mail" => "required|email:rfc,dns"
             //
         ];

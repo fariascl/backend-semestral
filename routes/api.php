@@ -7,6 +7,7 @@ use App\Http\Controllers\CentroDistribucionController;
 use App\Http\Controllers\MedicamentoController;
 use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\EgresoController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\TraspasoController;
 
 /*
@@ -26,32 +27,32 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('/farmacias')->group(function () use ($router) {
     $router->post('/agregar', [FarmaciaController::class, 'guardarFarmacia']);
-    $router->put('/actualizar', [FarmaciaController::class, 'actualizarFarmacia']);
-    $router->delete('/eliminar', [FarmaciaController::class, 'eliminarFarmacia']);
+    $router->put('/actualizar/{id}', [FarmaciaController::class, 'actualizarFarmacia']);
+    $router->delete('/eliminar/{id}', [FarmaciaController::class, 'eliminarFarmacia']);
     $router->get('/all', [FarmaciaController::class, 'listarFarmacias']);
     $router->get('/ver/{id}', [FarmaciaController::class, 'filtrarFarmacia']);
 });
 
 Route::prefix('/centros_distribucion')->group(function () use ($router) {
     $router->post('/agregar', [CentroDistribucionController::class, 'guardarCentroDistribucion']);
-    $router->put('/actualizar', [CentroDistribucionController::class, 'actualizarCentroDistribucion']);
-    $router->delete('/eliminar', [CentroDistribucionController::class, 'eliminarCentroDistribucion']);
+    $router->put('/actualizar/{id}', [CentroDistribucionController::class, 'actualizarCentroDistribucion']);
+    $router->delete('/eliminar/{id}', [CentroDistribucionController::class, 'eliminarCentroDistribucion']);
     $router->get('/all', [CentroDistribucionController::class, 'listarCentrosDistribucion']);
     $router->get('/ver/{id}', [CentroDistribucionController::class, 'filtrarCentrosDistribucion']);
 });
 
 Route::prefix('/medicamentos')->group(function () use ($router) {
     $router->post('/agregar', [MedicamentoController::class, 'guardarMedicamento']);
-    $router->put('/actualizar', [MedicamentoController::class, 'actualizarMedicamento']);
-    $router->delete('/eliminar', [MedicamentoController::class, 'eliminarMedicamento']);
+    $router->put('/actualizar/{id}', [MedicamentoController::class, 'actualizarMedicamento']);
+    $router->delete('/eliminar/{id}', [MedicamentoController::class, 'eliminarMedicamento']);
     $router->get('/all', [MedicamentoController::class, 'listarMedicamentos']);
     $router->get('/ver/{id}', [MedicamentoController::class, 'filtrarMedicamentos']);
 });
 
 Route::prefix('/traspaso')->group(function () use ($router) {
     $router->post('/agregar', [TraspasoController::class, 'guardarTraspaso']);
-    $router->put('/actualizar', [TraspasoController::class, 'actualizarTraspaso']);
-    $router->delete('/eliminar', [TraspasoController::class, 'eliminarTraspaso']);
+    $router->put('/actualizar/{id}', [TraspasoController::class, 'actualizarTraspaso']);
+    $router->delete('/eliminar/{id}', [TraspasoController::class, 'eliminarTraspaso']);
     $router->get('/all', [TraspasoController::class, 'listarTraspasos']);
     $router->get('/ver/{id}', [TraspasoController::class, 'filtrarTraspasos']);
 });
@@ -59,16 +60,26 @@ Route::prefix('/traspaso')->group(function () use ($router) {
 
 Route::prefix('/ingreso')->group(function () use ($router) {
     $router->post('/agregar', [IngresoController::class, 'guardarIngreso']);
-    $router->put('/actualizar', [IngresoController::class, 'actualizarIngreso']);
-    $router->delete('/eliminar', [IngresoController::class, 'eliminarIngreso']);
+    $router->put('/actualizar/{id}', [IngresoController::class, 'actualizarIngreso']);
+    $router->delete('/eliminar/{id}', [IngresoController::class, 'eliminarIngreso']);
     $router->get('/all', [IngresoController::class, 'listarIngresos']);
     $router->get('/ver/{id}', [IngresoController::class, 'filtrarIngresos']);
 });
 
 Route::prefix('/egreso')->group(function () use ($router) {
     $router->post('/agregar', [EgresoController::class, 'guardarEgreso']);
-    $router->put('/actualizar', [EgresoController::class, 'actualizarEgreso']);
-    $router->delete('/eliminar', [EgresoController::class, 'eliminarEgreso']);
+    $router->put('/actualizar/{id}', [EgresoController::class, 'actualizarEgreso']);
+    $router->delete('/eliminar/{id}', [EgresoController::class, 'eliminarEgreso']);
     $router->get('/all', [EgresoController::class, 'listarEgresos']);
     $router->get('/ver/{id}', [EgresoController::class, 'filtrarEgresos']);
 });
+
+Route::prefix('/stock')->group(function () use ($router) {
+    $router->post('/agregar', [StockController::class, 'guardarStock']);
+    $router->put('/actualizar/{id}', [StockController::class, 'actualizarStock']);
+    $router->delete('/eliminar/{id}', [StockController::class, 'eliminarStock']);
+    $router->get('/all', [StockController::class, 'listarStock']);
+    $router->get('/verCD/{id}', [StockController::class, 'filtrarporCD']);
+    $router->get('/verMED/{id}', [StockController::class, 'filtrarporMedicamento']);
+});
+

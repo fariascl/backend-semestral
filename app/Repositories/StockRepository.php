@@ -9,6 +9,21 @@ use Illuminate\Support\Facades\Log;
 
 class StockRepository
 {
+
+    public function guardarStock($request)
+    {
+
+        $stock = Stock::create([
+            "scd_id_medicamento" => $request-> id_medicamento,
+            "scd_cantidad" => $request -> cantidad,
+            "scd_centro_dist" => $request -> centro_dist
+        ]);
+
+        return response()->json(["stocks" => $stock], Response::HTTP_OK);
+
+    }
+
+
     public function listarStock()
     {
         $stock = Stock::all();
@@ -31,8 +46,8 @@ class StockRepository
     {
         try {
             $stock = Stock::findorFail($request->id);
-            if (isset($request->id) && stock->id)
-            $stock = Stock::where('id', $request->id)
+            if (isset($request->scd_id_medicamento) && $stock->scd_id_medicamento)
+          $stock = Stock::where('id', $request->id)
             ->update([
                 'scd_id_medicamento' => $request->scd_id_medicamento
             ]);
