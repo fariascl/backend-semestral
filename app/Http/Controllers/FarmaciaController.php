@@ -25,7 +25,7 @@ class FarmaciaController extends Controller
         return $this->farmaciaRepo->guardarFarmacia($request);
     }
 
-    public function filtrarFarmacias(Request $request)
+    public function filtrarFarmacia(Request $request)
     {
         return $this->farmaciaRepo->filtrarFarmacia($request);
     }
