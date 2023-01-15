@@ -37,7 +37,7 @@ Route::prefix('/centros_distribucion')->group(function () use ($router) {
     $router->put('/actualizar', [CentroDistribucionController::class, 'actualizarCentroDistribucion']);
     $router->delete('/eliminar', [CentroDistribucionController::class, 'eliminarCentroDistribucion']);
     $router->get('/all', [CentroDistribucionController::class, 'listarCentrosDistribucion']);
-    $router->get('/ver/{id}', [CentroDistribucionController::class, 'filtrarCentroDistribucion']);
+    $router->get('/ver/{id}', [CentroDistribucionController::class, 'filtrarCentrosDistribucion']);
 });
 
 Route::prefix('/medicamentos')->group(function () use ($router) {
