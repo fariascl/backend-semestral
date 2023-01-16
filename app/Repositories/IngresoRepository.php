@@ -53,6 +53,21 @@ class IngresoRepository
             return response()->json(["error" => $e->getMessage()], Response:HTTP_BAD_REQUEST);
         }
     }
+    public function eliminarIngreso($request)
+    {
+        try {
+            $ifexist = Ingreso::where('id', $request->id)->first();
+            if ($ifexist != null){
+                $ingreso = Ingreso::find($request->id)->delete();
+                return response()->json(["ingreso" => $ingreso], Response::HTTP_OK);
+            }
+            return response()->json(["msg" => "el id del ingreso de traspaso que intenta eliminar no existe"], Response::HTTP_OK);
+        }
+        catch (Exception $e)
+        {
+            return response()->json(["error" => $e], Response::HTTP_BAD_REQUEST);
+        }
+    }
 
 
 
