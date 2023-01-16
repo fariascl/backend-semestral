@@ -85,7 +85,7 @@ class TraspasoRepository
                 if ($request->det_tra_cantidad > $traspaso_detalle->det_tra_cantidad)
                 {
                     $stock_origen =  Stock::where('scd_centro_dist', $request->tras_cd_origen)->where('scd_id_medicamento', $request->id_medicamento)->decrement('scd_cantidad', ($request->det_tra_cantidad) - $traspaso_detalle->det_tra_cantidad);
-                    $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->increment('scd_cantidad', ($request->det_tra_cantidad) - $traspaso_detalle->det_tra_cantidad);
+                    $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->increment('scd_cantidad', ($request->det_tra_cantidad) + $traspaso_detalle->det_tra_cantidad);
                     $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
                     ->update([
                         'det_tra_cantidad' => $request->det_tra_cantidad
