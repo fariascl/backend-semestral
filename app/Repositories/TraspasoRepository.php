@@ -72,7 +72,27 @@ class TraspasoRepository
                 'tras_estado' => $request->tras_estado
             ]);
 
-            return response()->json(["traspaso_actualizado" => $traspaso]);
+            if (isset($request->id_medicamento))
+            $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
+            ->update([
+                'scd_id_medicamento' => $request->id_medicamento
+            ]);
+
+            if (isset($request->det_tra_cantidad))
+            $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
+            ->update([
+                'scd_id_cantidad' => $request->det_tra_cantidad
+            ]);
+
+            if (isset($request->tras_cd_destino))
+            $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
+            ->update([
+                'scd_cd_destino' => $request->tras_cd_destino
+            ]);
+
+
+
+            return response()->json(["traspaso_actualizado" => $traspaso, "traspaso_Detalle" => $traspaso_detalle]);
         }
         catch (Exception $e) {
             Log::info([
