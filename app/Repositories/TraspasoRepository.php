@@ -75,7 +75,7 @@ class TraspasoRepository
             if (isset($request->id_medicamento))
             $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
             ->update([
-                'scd_id_medicamento' => $request->id_medicamento
+                'id_medicamento' => $request->id_medicamento
             ]);
 
             if (isset($request->det_tra_cantidad))
