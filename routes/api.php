@@ -63,7 +63,7 @@ Route::prefix('/ingreso')->group(function () use ($router) {
     $router->put('/actualizar/{id}', [IngresoController::class, 'actualizarIngreso']);
     $router->delete('/eliminar/{id}', [IngresoController::class, 'eliminarIngreso']);
     $router->get('/all', [IngresoController::class, 'listarIngresos']);
-    $router->get('/ver/{id}', [IngresoController::class, 'filtrarIngresos']);
+    $router->get('/ver/{id}', [IngresoController::class, 'filtrarIngreso']);
 });
 
 Route::prefix('/egreso')->group(function () use ($router) {
