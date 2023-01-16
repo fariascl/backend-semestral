@@ -29,7 +29,7 @@ class StockRequest extends FormRequest
         return [
 
             "id_medicamento"=> 'required|numeric|exists:medicamentos,id',
-            "cantidad"=> 'required|numeric|min:100',
+            "cantidad"=> 'required|numeric|min:1',
             "centro_dist" => 'required|numeric|exists:centro_distribucion,id'
             //
         ];
