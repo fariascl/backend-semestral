@@ -80,7 +80,7 @@ class TraspasoRepository
 
             if (isset($request->det_tra_cantidad))
             {
-                $traspaso_detalle = $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)->get();
+                $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)->get();
                 Log::info($traspaso_detalle);
                 if ($request->det_tra_cantidad > $traspaso_detalle->det_tra_cantidad)
                 {
