@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ActualizarCDRequest;
 use App\Http\Requests\CentroDistribucionRequest;
 use Illuminate\Http\Request;
 use App\Repositories\CentroDistribucionRepository;
@@ -30,7 +31,7 @@ class CentroDistribucionController extends Controller
         return $this->cdRepo->filtrarCentrosDistribucion($request);
     }
 
-    public function actualizarCentroDistribucion(CentroDistribucionRequest $request)
+    public function actualizarCentroDistribucion(ActualizarCDRequest $request)
     {
         return $this->cdRepo->actualizarCentroDistribucion($request);
     }
