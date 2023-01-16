@@ -40,7 +40,7 @@ class MedicamentoRepository
                 'med_nombre' => $request->nombre
             ]);
 
-            if (isset($request->direccion))
+            if (isset($request->compuesto))
             $medicamentos = Medicamento::where('id', $request->id)
             ->update([
                 'med_compuesto' => $request->compuesto
