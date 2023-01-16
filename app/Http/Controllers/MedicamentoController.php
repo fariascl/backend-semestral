@@ -20,7 +20,7 @@ class MedicamentoController extends Controller
         return $this->medicamentoRepo->listarMedicamentos();
     }
 
-    public function guardarMedicamento(Request $request)
+    public function guardarMedicamento(MedicamentoRequest $request)
     {
         return $this->medicamentoRepo->guardarMedicamento($request);
     }
@@ -30,7 +30,7 @@ class MedicamentoController extends Controller
         return $this->medicamentoRepo->filtrarMedicamentos($request);
     }
 
-    public function actualizarMedicamento(Request $request)
+    public function actualizarMedicamento(MedicamentoRequest $request)
     {
         return $this->medicamentoRepo->actualizarMedicamento($request);
     }

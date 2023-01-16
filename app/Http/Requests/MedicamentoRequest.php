@@ -27,7 +27,7 @@ class MedicamentoRequest extends FormRequest
     public function rules()
     {
         return [
-            "nombre"=>'required|string|unique:medicamentos',
+            "nombre"=>'required|string|unique:medicamentos,med_nombre',
             "compuesto"=>'required|string',
         ];
     }
