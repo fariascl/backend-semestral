@@ -79,7 +79,7 @@ Route::prefix('/stock')->group(function () use ($router) {
     $router->put('/actualizar/{id}', [StockController::class, 'actualizarStock']);
     $router->delete('/eliminar/{id}', [StockController::class, 'eliminarStock']);
     $router->get('/all', [StockController::class, 'listarStock']);
-    $router->get('/verCD/{id}', [StockController::class, 'filtrarporCD']);
-    $router->get('/verMED/{id}', [StockController::class, 'filtrarporMedicamento']);
+    $router->get('/verporcd/{id}', [StockController::class, 'filtrarporCD']);
+    $router->get('/verpormedicamento/{id}', [StockController::class, 'filtrarporMedicamento']);
 });
 
