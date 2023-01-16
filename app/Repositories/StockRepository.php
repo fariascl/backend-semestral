@@ -32,14 +32,14 @@ class StockRepository
 
     public function filtrarporCD($request)
     {
-        $stock = Stock::where('scd_centro_dist', $request->scd_centro_dist)->get();
+        $stock = Stock::where('scd_centro_dist', $request->id)->get();
         return response()->json(["stocks" => $stock], Response::HTTP_OK);
     }
 
     public function filtrarporMedicamento($request)
     {
-        $stock = Stock::where('scd_id_medicamento', $request->scd_id_medicamento);
-        return response()->json(["stock" => $stock]);
+        $stock = Stock::where('scd_id_medicamento', $request->id);
+        return response()->json(["stocks" => $stock]);
     }
 
     public function actualizarStock($request)
