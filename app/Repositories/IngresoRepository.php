@@ -53,6 +53,12 @@ class IngresoRepository
             return response()->json(["error" => $e->getMessage()], Response:HTTP_BAD_REQUEST);
         }
     }
+
+    public function filtrarIngreso($request)
+    {
+        $ingreso = Ingreso::where('id', $request->id)->get();
+        return response()->json(["ingreso" => $ingreso], Response::HTTP_OK);
+    }
     public function eliminarIngreso($request)
     {
         try {

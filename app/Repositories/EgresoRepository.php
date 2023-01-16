@@ -27,6 +27,12 @@ class EgresoRepository
         return response()->json(["egreso" => $egreso], Response::HTTP_OK);
     }
 
+    public function filtrarEgreso($request)
+    {
+        $egreso = Egreso::where('id', $request->id)->get();
+        return response()->json(["ingreso" => $egreso], Response::HTTP_OK);
+    }
+
     public function actualizarEgreso($request)
     {
         try {
