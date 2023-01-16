@@ -104,14 +104,6 @@ class TraspasoRepository
             
             
 
-            if (isset($request->tras_cd_destino))
-            $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
-            ->update([
-                'tras_cd_destino' => $request->tras_cd_destino
-            ]);
-
-
-
             return response()->json(["traspaso_actualizado" => $traspaso, "traspaso_Detalle" => $traspaso_detalle]);
         }
         catch (Exception $e) {
