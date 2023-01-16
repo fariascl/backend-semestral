@@ -6,6 +6,7 @@ use App\Models\Traspaso;
 use App\Models\Detalle_Traspaso;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use App\Models\Stock;
 
 
 class TraspasoRepository
@@ -18,13 +19,25 @@ class TraspasoRepository
 
     public function guardarTraspaso($request)
     {
+        /*
+                "$request->tras_cd_origen,
+                $request->tras_cd_destino,
+                $request->tras_estado
+                $request->id_medicamento,
+                $request->det_tra_cantidad
+         */
         $traspaso = Traspaso::create([
             "tras_cd_origen" => $request->tras_cd_origen,
             "tras_cd_destino" => $request->tras_cd_destino,
             "tras_estado" => $request->tras_estado
         ]);
+        $detalleTraspaso = guardarDetallesTraspaso($request, $traspaso->id);
+        $stock_origen =  Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_mediamento)->increment('scd_cantidad', $request->det_tra_cantidad);
+        $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_origen)->where('scd_id_medicamento', $request->id_mediamento)->decrement('scd_cantidad', $request->det_tra_cantidad);
 
-        return response()->json(["traspaso" => $traspaso], Response::HTTP_OK);
+
+
+        return response()->json(["traspaso" => $traspaso, "traspaso_detalle" => $detalleTraspaso, "nuevo_stock_origen" => $stock_origen, "nuevo_stock_destino" => $stock_destino], Response::HTTP_OK);
     }
 
     public function actualizarTraspaso($request)
@@ -88,14 +101,16 @@ class TraspasoRepository
             return response()->json(["detalle_traspaso" => $detalleTraspaso]);
         }
 
-        public function guardarDetallesTraspaso($request)
+        public function guardarDetallesTraspaso($request, $traspaso_id)
         {
             $detalleTraspaso = Detalle_Traspaso::create([
                 "id_medicamento" => $request->id_medicamento,
                 "det_tra_cantidad" => $request->det_tra_cantidad,
-                "det_traspaso_id" => $request->det_traspaso_id
+                "det_traspaso_id" => $traspaso_id
             ]);
-            return response()->json(["detalle_traspaso" => $detalleTraspaso]);
+            //return response()->json(["detalle_traspaso" => $detalleTraspaso]);
+            return $detalleTraspaso;
+
         }
 
         public function actualizarDetallesTraspaso($request)
