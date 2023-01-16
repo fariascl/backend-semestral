@@ -107,7 +107,7 @@ class TraspasoRepository
             if (isset($request->tras_cd_destino))
             $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
             ->update([
-                'scd_cd_destino' => $request->tras_cd_destino
+                'tras_cd_destino' => $request->tras_cd_destino
             ]);
 
 
