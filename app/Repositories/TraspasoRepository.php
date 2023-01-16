@@ -31,19 +31,19 @@ class TraspasoRepository
     {
         try {
             $traspaso = Traspaso::findorFail($request->id);
-            if (isset($request->tras_cd_origen) && $traspaso->tras_cd_origen = $request->tras_cd_origen)
+            if (isset($request->tras_cd_origen))
             $traspaso = Traspaso::where('id', $request->id)
             ->update([
                 'tras_cd_origen' => $request->tras_cd_origen
             ]);
 
-            if (isset($request->tras_cd_destino) && $traspaso->tras_cd_destino = $request->tras_cd_destino)
+            if (isset($request->tras_cd_destino))
             $traspaso = Traspaso::where('id', $request->id)
             ->update([
                 'tras_cd_destino' => $request->tras_cd_destino
             ]);
 
-            if (isset($request->tras_estado) && $traspaso->tras_estado = $request->tras_estado)
+            if (isset($request->tras_estado))
             $traspaso = Traspaso::where('id', $request->id)
             ->update([
                 'tras_estado' => $request->tras_estado
@@ -91,19 +91,19 @@ class TraspasoRepository
             */
             try {
                 $detalleTraspaso = Detalle_Traspaso::findorFail($request->id);
-                if (isset($request->id_medicamento) && $detalleTraspaso->id_medicamento = $request->id_medicamento)
+                if (isset($request->id_medicamento))
                 $detalleTraspaso = Detalle_Traspaso::where('id', $request->id)
                 ->update([
                     "id_medicamento" => $request->id_medicamento
                 ]);
 
-                if (isset($request->det_tra_cantidad) && $detalleTraspaso->det_tra_cantidad = $request->det_tra_cantidad)
+                if (isset($request->det_tra_cantidad))
                 $detalleTraspaso = Detalle_Traspaso::where('id', $request->id)
                 ->update([
                     "det_tra_cantidad" => $request->det_tra_cantidad
                 ]);
 
-                if (isset($request->det_traspaso_id) && $detalleTraspaso->det_traspaso_id = $request->det_traspaso_id)
+                if (isset($request->det_traspaso_id))
                 $detalleTraspaso = Detalle_Traspaso::where('id', $request->id)
                 ->update([
                     "det_traspaso_id" => $request->det_traspaso_id

@@ -36,7 +36,7 @@ class IngresoRepository
                 'ingr_fecha' => $request->ingr_fecha
             ]);
 
-            if (isset($request->ingr_centro_dist) && $ingreso->ingr_centro_dist = $request->ingr_centro_dist)
+            if (isset($request->ingr_centro_dist))
             $ingreso = Ingreso::where('id', $request->id)
             ->update([
                 'ingr_centro_dist' => $request->ingr_centro_dist
@@ -83,19 +83,19 @@ class IngresoRepository
             */
             try {
                 $detalleIngreso = Detalle_Ingreso::findorFail($request->id);
-                if (isset($request->id_medicamento) && $detalleIngreso->id_medicamento = $request->id_medicamento)
+                if (isset($request->id_medicamento))
                 $detalleIngreso = Detalle_Ingreso::where('id', $request->id)
                 ->update([
                     "id_medicamento" => $request->id_medicamento
                 ]);
 
-                if (isset($request->det_ingr_cantidad) && $detalleIngreso->det_ing_cantidad = $request->det_ing_cantidad)
+                if (isset($request->det_ingr_cantidad))
                 $detalleIngreso = Detalle_Ingreso::where('id', $request->id)
                 ->update([
                     "det_ing_cantidad" => $request->det_ing_cantidad
                 ]);
 
-                if (isset($request->det_ingreso_id) && $detalleIngreso->det_ingreso_id = $request->det_ingreso_id)
+                if (isset($request->det_ingreso_id))
                 $detalleIngreso = Detalle_Ingreso::where('id', $request->id)
                 ->update([
                     "det_ingreso_id" => $request->det_ingreso_id

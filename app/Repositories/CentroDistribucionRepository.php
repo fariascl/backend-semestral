@@ -36,19 +36,19 @@ class CentroDistribucionRepository
     {
         try {
             $cd = Centro_Distribucion::findorFail($request->id);
-            if (isset($request->codigo) &&  $cd->cd_codigo = $request->codigo)
+            if (isset($request->codigo))
             $cd = Centro_Distribucion::where('id', $request->id)
             ->update([
                 'cd_codigo' => $request->codigo
             ]);
 
-            if (isset($request->direccion) &&  $cd->cd_direccion = $request->direccion)
+            if (isset($request->direccion))
             $cd = Centro_Distribucion::where('id', $request->id)
             ->update([
                 'cd_direccion' => $request->direccion
             ]);
 
-            if (isset($request->telefono) && $cd->cd_telefono = $request->telefono)
+            if (isset($request->telefono))
             $cd = Centro_Distribucion::where('id', $request->id)
             ->update([
                 'cd_telefono' => $request->telefono

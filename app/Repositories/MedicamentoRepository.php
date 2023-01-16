@@ -34,13 +34,13 @@ class MedicamentoRepository
     {
         try {
             $medicamentos = Medicamento::findorFail($request->id);
-            if (isset($request->nombre) &&  $medicamentos->med_nombre = $request->nombre)
+            if (isset($request->nombre))
             $medicamentos = Medicamento::where('id', $request->id)
             ->update([
                 'med_nombre' => $request->nombre
             ]);
 
-            if (isset($request->direccion) &&  $medicamentos->med_compuesto = $request->direccion)
+            if (isset($request->direccion))
             $medicamentos = Medicamento::where('id', $request->id)
             ->update([
                 'med_compuesto' => $request->compuesto

@@ -31,18 +31,18 @@ class EgresoRepository
     {
         try {
             $egreso = Egreso::findorFail($request->id);
-            if (isset($request->egre_fecha) && $egreso->egre_fecha = $request->egre_fecha)
+            if (isset($request->egre_fecha))
             $egreso = Egreso::where('id', $request->id)
             ->update([
                 'egre_fecha' => $request->egre_fecha
             ]);
-            if (isset($request->egre_centro_dist) && $egreso->egre_centro_dist = $request->egre_centro_dist)
+            if (isset($request->egre_centro_dist))
             $egreso = Egreso::where('id', $request->id)
             ->update([
                 'egre_centro_dist' => $request->egre_centro_dist
             ]);
 
-            if (isset($request->egre_farmacia_id) && $egreso->egre_farmacia_id = $request->egre_farmacia_id)
+            if (isset($request->egre_farmacia_id))
             $egreso = Egreso::where('id', $request->id)
             ->update([
                 'egre_farmacia_id' => $request->egre_farmacia_id
@@ -90,19 +90,19 @@ class EgresoRepository
             */
             try {
                 $detalleEgreso = Detalle_Egreso::findorFail($request->id);
-                if (isset($request->id_medicamento) && $detalleEgreso->id_medicamento = $request->id_medicamento)
+                if (isset($request->id_medicamento))
                 $detalleEgreso = Detalle_Egreso::where('id', $request->id)
                 ->update([
                     "id_medicamento" => $request->id_medicamento
                 ]);
 
-                if (isset($request->det_egr_cantidad) && $detalleEgreso->det_egr_cantidad = $request->det_egr_cantidad)
+                if (isset($request->det_egr_cantidad))
                 $detalleEgreso = Detalle_Egreso::where('id', $request->id)
                 ->update([
                     "det_egr_cantidad" => $request->det_ing_cantidad
                 ]);
 
-                if (isset($request->det_egreso_id) && $detalleEgreso->det_egreso_id = $request->det_egreso_id)
+                if (isset($request->det_egreso_id))
                 $detalleEgreso = Detalle_Egreso::where('id', $request->id)
                 ->update([
                     "det_egreso_id" => $request->det_egreso_id
