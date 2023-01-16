@@ -62,6 +62,22 @@ class TraspasoRepository
         }
     }
 
+    public function eliminarTraspaso($request)
+    {
+        try {
+            $ifexist = Traspaso::where('id', $request->id)->first();
+            if ($ifexist != null){
+                $traspaso = Traspaso::find($request->id)->delete();
+                return response()->json(["traspaso" => $traspaso], Response::HTTP_OK);
+            }
+            return response()->json(["msg" => "el id del traspaso que intenta eliminar no existe"], Response::HTTP_OK);
+        }
+        catch (Exception $e)
+        {
+            return response()->json(["error" => $e], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
 
 
         /* DETALLES DE TRASPASO */

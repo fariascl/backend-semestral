@@ -61,6 +61,21 @@ class EgresoRepository
         }
     }
 
+    public function eliminarEgreso($request)
+    {
+        try {
+            $ifexist = Egreso::where('id', $request->id)->first();
+            if ($ifexist != null){
+                $egreso = Egreso::find($request->id)->delete();
+                return response()->json(["egreso" => $egreso], Response::HTTP_OK);
+            }
+            return response()->json(["msg" => "el id del egreso que intenta eliminar no existe"], Response::HTTP_OK);
+        }
+        catch (Exception $e)
+        {
+            return response()->json(["error" => $e], Response::HTTP_BAD_REQUEST);
+        }
+    }
 
 
         /* DETALLES DE TRASPASO */
