@@ -36,7 +36,7 @@ class TraspasoRepository
         
         $ifexist = Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->first();
         if ($ifexist != null){
-            $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_origen)->where('scd_id_medicamento', $request->id_medicamento)->increment('scd_cantidad', $request->det_tra_cantidad);
+            $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->increment('scd_cantidad', $request->det_tra_cantidad);
         }
         else {
             $stock_destino = Stock::create([
@@ -79,10 +79,28 @@ class TraspasoRepository
             ]);
 
             if (isset($request->det_tra_cantidad))
-            $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
-            ->update([
-                'scd_id_cantidad' => $request->det_tra_cantidad
-            ]);
+            {
+                $traspaso_detalle = $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)-get();
+                if ($request->det_tra_cantidad > $traspaso_detalle->det_tra_cantidad)
+                {
+                    $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
+                    ->update([
+                        'scd_id_cantidad' => $request->det_tra_cantidad
+                    ]);
+                    $stock_origen =  Stock::where('scd_centro_dist', $request->tras_cd_origen)->where('scd_id_medicamento', $request->id_medicamento)->decrement('scd_cantidad', ($request->det_tra_cantidad) - $traspaso_detalle->det_tra_cantidad);
+                    $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->increment('scd_cantidad', ($request->det_tra_cantidad) - $traspaso_detalle->det_tra_cantidad);
+                }
+                else {
+                    $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)
+                    ->update([
+                        'scd_id_cantidad' => $request->det_tra_cantidad
+                    ]);
+                    $stock_origen =  Stock::where('scd_centro_dist', $request->tras_cd_origen)->where('scd_id_medicamento', $request->id_medicamento)->increment('scd_cantidad', ($request->det_tra_cantidad) - $traspaso_detalle->det_tra_cantidad);
+                    $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->decrement('scd_cantidad', ($request->det_tra_cantidad) - $traspaso_detalle->det_tra_cantidad);
+                }
+            }
+            
+            
 
             if (isset($request->tras_cd_destino))
             $traspaso_detalle = Detalle_Traspaso::where('det_traspaso_id', $request->id)

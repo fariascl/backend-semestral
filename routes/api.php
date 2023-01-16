@@ -54,7 +54,7 @@ Route::prefix('/traspaso')->group(function () use ($router) {
     $router->put('/actualizar/{id}', [TraspasoController::class, 'actualizarTraspaso']);
     $router->delete('/eliminar/{id}', [TraspasoController::class, 'eliminarTraspaso']);
     $router->get('/all', [TraspasoController::class, 'listarTraspasos']);
-    $router->get('/ver/{id}', [TraspasoController::class, 'filtrarTraspasos']);
+    $router->get('/ver/{id}', [TraspasoController::class, 'filtrarTraspaso']);
 });
 
 
