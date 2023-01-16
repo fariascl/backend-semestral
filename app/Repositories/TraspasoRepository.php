@@ -32,11 +32,11 @@ class TraspasoRepository
             "tras_estado" => $request->tras_estado
         ]);
         $detalleTraspaso = $this->guardarDetallesTraspaso($request, $traspaso->id);
-        $stock_origen =  Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->increment('scd_cantidad', $request->det_tra_cantidad);
+        $stock_origen =  Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->decrement('scd_cantidad', $request->det_tra_cantidad);
         
         $ifexist = Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->first();
         if ($ifexist != null){
-            $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_origen)->where('scd_id_medicamento', $request->id_medicamento)->decrement('scd_cantidad', $request->det_tra_cantidad);
+            $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_origen)->where('scd_id_medicamento', $request->id_medicamento)->increment('scd_cantidad', $request->det_tra_cantidad);
         }
         else {
             $stock_destino = Stock::create([
