@@ -80,7 +80,7 @@ class TraspasoRepository
         try {
             $ifexist = Traspaso::where('id', $request->id)->first();
             if ($ifexist != null){
-                $traspaso_detalle = Detalle_Traspaso::where('traspaso_id', $ifexist->det_traspaso_id)->delete();
+                $traspaso_detalle = Detalle_Traspaso::where('traspaso_id', $ifexist->id)->delete();
                 $traspaso = Traspaso::find($request->id)->delete();
                 return response()->json(["traspaso" => $traspaso], Response::HTTP_OK);
             }
