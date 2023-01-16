@@ -33,8 +33,18 @@ class TraspasoRepository
         ]);
         $detalleTraspaso = $this->guardarDetallesTraspaso($request, $traspaso->id);
         $stock_origen =  Stock::where('scd_centro_dist', $request->tras_cd_destino)->where('scd_id_medicamento', $request->id_medicamento)->increment('scd_cantidad', $request->det_tra_cantidad);
-        $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_origen)->where('scd_id_medicamento', $request->id_medicamento)->decrement('scd_cantidad', $request->det_tra_cantidad);
-
+        
+        $ifexist = Stock::where('id', $request->id)->first();
+        if ($ifexist != null){
+            $stock_destino = Stock::where('scd_centro_dist', $request->tras_cd_origen)->where('scd_id_medicamento', $request->id_medicamento)->decrement('scd_cantidad', $request->det_tra_cantidad);
+        }
+        else {
+            $stock_destino = Stock::create([
+                "scd_id_medicamento" => $request-> id_medicamento,
+                "scd_cantidad" => $request -> cantidad,
+                "scd_centro_dist" => $request -> centro_dist
+            ]);
+        }
 
 
         return response()->json(["traspaso" => $traspaso, "traspaso_detalle" => $detalleTraspaso, "nuevo_stock_origen" => $stock_origen, "nuevo_stock_destino" => $stock_destino], Response::HTTP_OK);
@@ -80,7 +90,7 @@ class TraspasoRepository
         try {
             $ifexist = Traspaso::where('id', $request->id)->first();
             if ($ifexist != null){
-                $traspaso_detalle = Detalle_Traspaso::where('traspaso_id', $ifexist->id)->delete();
+                $traspaso_detalle = Detalle_Traspaso::where('traspaso_id', $request->id)->delete();
                 $traspaso = Traspaso::find($request->id)->delete();
                 return response()->json(["traspaso" => $traspaso], Response::HTTP_OK);
             }
