@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IngresoRequest;
 use Illuminate\Http\Request;
 use App\Repositories\IngresoRepository;
 
@@ -18,7 +19,7 @@ class IngresoController extends Controller
         return $this->ingresoRepo->listarIngresos();
     }
 
-    public function guardarIngreso(Request $request)
+    public function guardarIngreso(IngresoRequest $request)
     {
         return $this->ingresoRepo->guardarIngreso($request);
     }
@@ -28,7 +29,7 @@ class IngresoController extends Controller
         return $this->ingresoRepo->filtrarIngreso($request);
     }
 
-    public function actualizarIngreso(Request $request)
+    public function actualizarIngreso(IngresoRequest $request)
     {
         return $this->ingresoRepo->actualizarIngreso($request);
     }

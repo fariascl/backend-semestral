@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EgresoRequest;
 use Illuminate\Http\Request;
 use App\Repositories\EgresoRepository;
 
@@ -18,7 +19,7 @@ class EgresoController extends Controller
         return $this->egresoRepo->listarEgresos();
     }
 
-    public function guardarEgreso(Request $request)
+    public function guardarEgreso(EgresoRequest $request)
     {
         return $this->egresoRepo->guardarEgreso($request);
     }
@@ -28,7 +29,7 @@ class EgresoController extends Controller
         return $this->egresoRepo->filtrarEgreso($request);
     }
 
-    public function actualizarEgreso(Request $request)
+    public function actualizarEgreso(EgresoRequest $request)
     {
         return $this->egresoRepo->actualizarEgreso($request);
     }

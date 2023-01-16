@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TraspasoRequest;
 use Illuminate\Http\Request;
 use App\Repositories\TraspasoRepository;
 
@@ -18,7 +19,7 @@ class TraspasoController extends Controller
         return $this->traspasoRepo->listarTraspasos();
     }
 
-    public function guardarTraspaso(Request $request)
+    public function guardarTraspaso(TraspasoRequest $request)
     {
         return $this->traspasoRepo->guardarTraspaso($request);
     }
@@ -28,7 +29,7 @@ class TraspasoController extends Controller
         return $this->traspasoRepo->filtrarTraspaso($request);
     }
 
-    public function actualizarTraspaso(Request $request)
+    public function actualizarTraspaso(TraspasoRequest $request)
     {
         return $this->traspasoRepo->actualizarTraspaso($request);
     }

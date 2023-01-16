@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StockRequest;
 use App\Repositories\StockRepository;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class StockController extends Controller
         $this->stockrepo = $stockrepo;
     }
 
-    public function guardarStock(Request $request)
+    public function guardarStock(StockRequest $request)
     {
         return $this->stockrepo->guardarStock($request);
     }
@@ -34,7 +35,7 @@ class StockController extends Controller
         return $this -> stockrepo -> filtrarporMedicamento($request);
     }
 
-    public function actualizarStock(Request $request)
+    public function actualizarStock(StockRequest $request)
     {
         return $this -> stockrepo -> actualizarStock($request);
     }
