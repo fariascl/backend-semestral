@@ -38,8 +38,8 @@ class StockRepository
 
     public function filtrarporMedicamento($request)
     {
-        $stock = Stock::where('scd_id_medicamento', $request->id);
-        return response()->json(["stocks" => $stock]);
+        $stock = Stock::where('scd_id_medicamento', $request->id)->get();
+        return response()->json(["stocks" => $stock], Response::HTTP_OK);
     }
 
     public function actualizarStock($request)
