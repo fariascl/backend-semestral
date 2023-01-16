@@ -32,7 +32,7 @@ class StockRepository
 
     public function filtrarporCD($request)
     {
-        $stock = Stock::where('scd_centro_dist', $request->scd_centro_dist);
+        $stock = Stock::where('scd_centro_dist', $request->scd_centro_dist)->get();
         return response()->json(["stock" => $stock]);
     }
 
