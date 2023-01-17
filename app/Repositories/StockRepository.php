@@ -46,22 +46,22 @@ class StockRepository
     {
         try {
             $stock = Stock::findorFail($request->id);
-            if (isset($request->scd_id_medicamento))
+            if (isset($request->id_medicamento))
           $stock = Stock::where('id', $request->id)
             ->update([
-                'scd_id_medicamento' => $request->scd_id_medicamento
+                'scd_id_medicamento' => $request->id_medicamento
             ]);
 
-            if (isset($request->scd_cantidad))
+            if (isset($request->cantidad))
             $stock = Stock::where('id', $request->id)
             ->update([
-                'scd_cantidad' => $request->scd_cantidad
+                'scd_cantidad' => $request->cantidad
             ]);
 
-            if (isset($request->scd_centro_dist))
+            if (isset($request->centro_dist))
             $stock = Stock::where('id', $request->id)
             ->update([
-                'scd_centro_dist' => $request->scd_centro_dist
+                'scd_centro_dist' => $request->centro_dist
             ]);
 
             return response()->json(["stock_actualizado" => $stock]);
