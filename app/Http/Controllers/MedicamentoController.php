@@ -30,7 +30,7 @@ class MedicamentoController extends Controller
         return $this->medicamentoRepo->filtrarMedicamento($request);
     }
 
-    public function actualizarMedicamento(MedicamentoRequest $request)
+    public function actualizarMedicamento(Request $request)
     {
         return $this->medicamentoRepo->actualizarMedicamento($request);
     }
